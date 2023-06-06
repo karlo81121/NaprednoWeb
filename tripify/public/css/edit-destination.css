@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.edit-destination {
+    width: 25%;
+    margin-top: 6%;
+    display: flex;
+    justify-content: center;
+}
+
+input[type=text], textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+button {
+    width: 100%;
+}

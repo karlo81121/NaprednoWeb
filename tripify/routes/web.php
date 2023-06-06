@@ -26,3 +26,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//temp routes (obrišite kad budete pisali prave rute)
+Route::get('/edit-destination', function(){
+    return view('edit-destination');
+});
