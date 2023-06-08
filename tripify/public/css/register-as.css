@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.body-container {
+    border: 1px solid #000000;
+    width: 20%;
+    margin: 0 auto;
+    border-radius: 5px;
+    margin-top: 10%;
+    padding: 1%;
+}
+
+.register-as-title {
+    display: flex;
+    justify-content: center;
+}
+
+.register-buttons {
+    display: flex;
+    justify-content: center;
+}

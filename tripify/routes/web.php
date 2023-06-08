@@ -31,3 +31,11 @@ Route::middleware([
 Route::get('/edit-destination', function(){
     return view('edit-destination');
 });
+
+Route::get('/register-as', function(){
+    return view('register-as');
+});
+
+Route::get('/business-registration', function() {
+   return view('register-business'); 
+});
