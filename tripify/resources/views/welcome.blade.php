@@ -43,7 +43,7 @@
             </div>
 
             <a href="#">
-            <div class="card destionation-card w-100 mb-3">
+            <div class="card destination-card w-100 mb-3">
                 <img src="{{URL::asset('/images/trip.jpg')}}" width="250" height="250" />
                 <div class="card-body">
                     <h5 class="card-title">Maldivi</h5>
@@ -54,7 +54,7 @@
             </a>
 
             <a href="#">
-            <div class="card destionation-card w-100 mb-3">
+            <div class="card destination-card w-100 mb-3">
                 <img src="{{URL::asset('/images/trip.jpg')}}" width="250" height="250" />
                 <div class="card-body">
                     <h5 class="card-title">Belišće</h5>
@@ -65,7 +65,7 @@
             </a>
 
             <a href="#">
-            <div class="card destionation-card w-100 mb-3">
+            <div class="card destination-card w-100 mb-3">
                 <img src="{{URL::asset('/images/trip.jpg')}}" width="250" height="250" />
                 <div class="card-body">
                     <h5 class="card-title">Podvinje</h5>

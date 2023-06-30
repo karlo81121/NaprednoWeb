@@ -39,3 +39,19 @@ Route::get('/register-as', function(){
 Route::get('/business-registration', function() {
    return view('register-business'); 
 });
+
+Route::get('/agency-reservations', function(){
+    return view('agency-reservation-list');
+});
+
+Route::get('/agency-details', function(){
+    return view('agency-details');
+});
+
+Route::get('/agency-trip-list', function() {
+    return view('agency-trip-list');
+});
+
+Route::get('/user-profile', function() {
+    return view('user-profile');
+});

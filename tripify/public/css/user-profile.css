@@ -92,31 +92,6 @@ a {
     width: 90%;
 }
 
-.agencies-title-container > h3 {
-    overflow: hidden;
-    text-align: center;
-}
-
-.agencies-title-container > h3::before {
-    background-color: #000000;
-    content: "";
-    display: inline-block;
-    height: 1px;
-    position: relative;
-    vertical-align: middle;
-    width: 50%;
-}
-
-.agencies-title-container > h3::after {
-    background-color: #000000;
-    content: "";
-    display: inline-block;
-    height: 1px;
-    position: relative;
-    vertical-align: middle;
-    width: 90%;
-}
-
 h3:before {
     right: 0.5em;
     margin-left: -90%;
@@ -125,12 +100,6 @@ h3:before {
 h3:after {
     left: 0.5em;
     margin-right: -50%;
-}
-
-.agencies-cards {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 
 .card:hover {
@@ -142,6 +111,15 @@ h3:after {
     border: 1px solid #CCCCCC;
     margin: 10px;
     border-radius: 5px;
+}
+
+button {
+    width: 100px;
+    margin-left: -50%;
+}
+
+.card-text {
+    width: 90%;
 }
 
 .authentication-container > a:hover {
