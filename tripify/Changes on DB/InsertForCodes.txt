@@ -1,0 +1,39 @@
+//ROLES:
+
+INSERT INTO  roles (ID, code, name) VALUES (1, 'ADM', 'Administrator');
+INSERT INTO  roles (ID, code, name) VALUES (2, 'AGN', 'Travel Agency');
+INSERT INTO  roles (ID, code, name) VALUES (3, 'USER', 'Customer user');
+
+//STATES:
+
+insert into states (id, code, name) VALUES (1, 'EG', 'Egypt');
+insert into states (id, code, name) VALUES (2, 'CN', 'China');
+insert into states (id, code, name) VALUES (3, 'HR', 'Croatia');
+
+//DESTINATION TYPES:
+INSERT INTO `destination_types`(`id`, `code`, `description`) VALUES ('1','EXC','Exclusive destination');
+INSERT INTO `destination_types`(`id`, `code`, `description`) VALUES ('2','DAY','Daily destination');
+
+//DESTINATION TRANSPORTATION TYPES:
+INSERT INTO `destination_transport_types`(`id`, `code`, `description`) VALUES (1, 'FLY','By plane');
+INSERT INTO `destination_transport_types`(`id`, `code`, `description`) VALUES (2, 'BUS','By shuttle');
+INSERT INTO `destination_transport_types`(`id`, `code`, `description`) VALUES (3, 'SEA','By boat');
+INSERT INTO `destination_transport_types`(`id`, `code`, `description`) VALUES (4, 'TRA','By train');
+
+//DESTINATION RESERVATION STATUSES:
+INSERT INTO `destination_reservation_statuses`(`id`, `code`, `description`) VALUES ('1','PEND', 'User reservation pending for review by agency');
+INSERT INTO `destination_reservation_statuses`(`id`, `code`, `description`) VALUES ('2','APPR','User reservation approved');
+INSERT INTO `destination_reservation_statuses`(`id`, `code`, `description`) VALUES ('3','DECL','User reservation declined');
+
+//DESTINATION STATUSES:
+INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('1','CREA','Destination created by agency');
+INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('2','PROG','In progress for reservations');
+INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('3','DONE','Iterary done');
+INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('4','CANC','Destination cancelled');
+
+//CANCELLATION REASONS:
+INSERT INTO `cancellation_reasons`(`id`, `code`, `description`) VALUES ('1','1','Cancelled by user');
+INSERT INTO `cancellation_reasons`(`id`, `code`, `description`) VALUES ('2','2','Cancelled by agency');
+INSERT INTO `cancellation_reasons`(`id`, `code`, `description`) VALUES ('3','3','Cancelled by administrator');
+
+//ATTRACTIONS i PICTURES se trebamo dogovoriti!
