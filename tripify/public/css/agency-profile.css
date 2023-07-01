@@ -1,0 +1,25 @@
+.agency-profile-container {
+    display: flex;
+    justify-content: center;
+}
+
+.your-destinations, .trip-approval-center {
+    width: 250px;
+    height: 250px;
+    border: 1px solid #DDDDDD;
+    background-color: #DDDDDD;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.25s ease-in-out;
+}
+
+.your-destinations:hover, .trip-approval-center:hover {
+    border: 1px solid #000000;
+    transition: all 0.25s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+}

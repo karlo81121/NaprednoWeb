@@ -55,3 +55,15 @@ Route::get('/agency-trip-list', function() {
 Route::get('/user-profile', function() {
     return view('user-profile');
 });
+
+Route::get('/trip-details', function() {
+    return view('trip-details');
+});
+
+Route::get('/create-trip', function(){
+    return view('create-trip-form');
+});
+
+Route::get('/agency-profile', function() {
+    return view('agency-profile');
+});
