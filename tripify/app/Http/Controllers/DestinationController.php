@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Destination;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class DestinationController extends Controller
@@ -57,51 +56,16 @@ class DestinationController extends Controller
 
         $destinationForUpdate->save();
 
-        return redirect('/dashboard');
+        return redirect('/updatedestinations');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Destination $destination)
-    {
-        //
-    }
+    public function deleteDestination(Request $request){
+        $destinationForDelete = Destination::find($request->input('id'));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Destination $destination)
-    {
-        //
-    }
+        $destinationForDelete->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Destination $destination)
-    {
-        //
-    }
+        //Update reservations
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Destination  $destination
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Destination $destination)
-    {
-        //
+        return redirect('/updatedestinations');
     }
 }

@@ -2,84 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Interfaces\IDestinationReservationStatuses;
 use App\Models\DestinationReservations;
+use App\Models\DestinationReservationStatuses;
+use Config;
 use Illuminate\Http\Request;
 
-class DestinationReservationsController extends Controller
+class DestinationReservationsController extends Controller implements IDestinationReservationStatuses
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+   
+    public function getAllDestinationReservations()
     {
-        //
+        $reservations = DestinationReservations::all();
+
+        return view('agency-profile', compact('reservations'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getAllDestinationReservationsById($destinationId)
     {
-        //
+
+        $reservations = DestinationReservations::whereRelation('destinations', 'id', $destinationId)->get();
+
+        return view('user-profile', compact('reservations'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function createReservation(Request $request)
     {
-        //
+        $reservation = new DestinationReservations();
+        $pendingStatus = Config::get('enums.destination_reservation_statuses.PEND');
+
+        $reservation->user_id = auth()->user()->id;
+        $reservation->destination_id = $request->destination_id;
+        $reservation->reserv_status_id = $this->getAllDestinationReservationStatuses()->where('id', $pendingStatus)->first();
+
+        $reservation->save();
+
+        redirect('\user-profile');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DestinationReservations  $destinationReservations
-     * @return \Illuminate\Http\Response
-     */
-    public function show(DestinationReservations $destinationReservations)
-    {
-        //
-    }
+    private function getAllDestinationReservationStatuses(){
+        $dest_res_statuses = DestinationReservationStatuses::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DestinationReservations  $destinationReservations
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DestinationReservations $destinationReservations)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DestinationReservations  $destinationReservations
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, DestinationReservations $destinationReservations)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DestinationReservations  $destinationReservations
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(DestinationReservations $destinationReservations)
-    {
-        //
+        return $dest_res_statuses;
     }
 }

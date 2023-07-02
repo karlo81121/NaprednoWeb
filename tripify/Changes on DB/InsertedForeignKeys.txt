@@ -1,0 +1,32 @@
+//DESTINATIONS TABLE
+
+ALTER TABLE destinations
+ADD FOREIGN KEY (dest_type_id) REFERENCES destination_types(id);
+
+ALTER TABLE destinations
+ADD FOREIGN KEY (dest_transp_type_id) REFERENCES destination_transport_types(id);
+
+ALTER TABLE destinations
+ADD FOREIGN KEY (dest_status_id) REFERENCES destination_statuses(id);
+
+ALTER TABLE destinations
+ADD FOREIGN KEY (state_id) REFERENCES states(id);
+
+ALTER TABLE destinations
+ADD FOREIGN KEY (canc_reason_id) REFERENCES cancellation_reasons(id);
+
+//DESTINATION_RESERVATIONS TABLE
+
+ALTER TABLE destination_reservations
+ADD FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE destination_reservations
+ADD FOREIGN KEY (destination_id) REFERENCES destinations(id);
+
+ALTER TABLE destination_reservations ADD FOREIGN KEY (reserv_status_id) REFERENCES destination_reservation_statuses(id);
+
+//USERS
+ALTER TABLE users ADD FOREIGN KEY (role_id) REFERENCES roles(id);
+
+//PICTURES
+ALTER TABLE pictures ADD FOREIGN KEY (destination_id) REFERENCES destinations(id);

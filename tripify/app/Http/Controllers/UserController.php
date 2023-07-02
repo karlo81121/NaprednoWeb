@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller implements IRoles
 {
+    
+    //If necessary for administrator
     public function getAllUsers(){
         $users = User::all();
         $roles = $this->getAllRoles();
