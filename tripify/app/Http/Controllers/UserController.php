@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Interfaces\IRoles;
 use App\Models\User;
 use App\Models\Roles;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends Controller implements IRoles
 {
     public function getAllUsers(){
         $users = User::all();
-        return view('users', compact('users'));
+        $roles = $this->getAllRoles();
+        return view('users', compact('users', 'roles'));
     }
 
     //General method for user/agency 
@@ -38,11 +40,10 @@ class UserController extends Controller
     }
 
 
-
     //Admin methods
     public function getAllUsersForUpdate(){
         $updateUsers = User::all();
-        $roles = Roles::all();
+        $roles = $this->getAllRoles();
         return view('updateusers', compact('updateUsers', 'roles'));
     }
 
@@ -60,7 +61,7 @@ class UserController extends Controller
         $userForUpdate->email = $request->email;
         $userForUpdate->password = $request->password;
         $userForUpdate->description = $request->description != "" ? $request->description : null;
-        $userForUpdate->role_id = 
+        $userForUpdate->role_id = $request->role_id;
         $userForUpdate->isverified = $request->isverified;
 
         $userForUpdate->save();
@@ -74,6 +75,12 @@ class UserController extends Controller
         $userForDelete->delete();
 
         return redirect('/updateusers');
+    }
+
+    private function getAllRoles(){
+        $roles = Roles::all();
+
+        return $roles;
     }
 
 }

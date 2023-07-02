@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('dest_transp_type_id');
             $table->foreignId('dest_status_id');
             $table->foreignId('state_id');
-            $table->foreignId('canc_reason_id');
+            $table->foreignId('canc_reason_id')->nullable();
             $table->timestamps();
         });
     }
