@@ -7,35 +7,79 @@ use App\Models\User;
 use App\Models\Roles;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller implements IRoles
 {
-    
+    public function registerUser(Request $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => config('enums.roles.USER'),
+            'isverified' => true
+        ]);
+
+        if (is_null($user)) {
+            return response('Error registering user!', 500);
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
+    public function registerAgency(Request $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => config('enums.roles.AGB'),
+            'isverified' => true
+        ]);
+
+        if (is_null($user)) {
+            return response('Error registering user!', 500);
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
     //If necessary for administrator
-    public function getAllUsers(){
+    public function getAllUsers()
+    {
         $users = User::all();
         $roles = $this->getAllRoles();
         return view('users', compact('users', 'roles'));
     }
 
     //General method for user/agency 
-    public function acquireRoleToUser(Request $request){
+    public function acquireRoleToUser(Request $request)
+    {
         $user = User::find($request->input('id'));
         $user->__set('role', $request->role);
         $user->save();
 
-        return redirect('/dashboard'); 
+        return redirect('/dashboard');
     }
 
     //General fetch of user details (no matter of given role)
-    public function getUserById(){
+    public function getUserById()
+    {
         $user = User::find(auth()->user()->id);
 
         return view('user-profile', compact('user'));
     }
 
     //Agency methods
-    public function getAgencyDetails($id){
+    public function getAgencyDetails($id)
+    {
         $agency = User::find($id);
 
         return view('agency-details', compact('agency'));
@@ -43,21 +87,24 @@ class UserController extends Controller implements IRoles
 
 
     //Admin methods
-    public function getAllUsersForUpdate(){
+    public function getAllUsersForUpdate()
+    {
         $updateUsers = User::all();
         $roles = $this->getAllRoles();
         return view('updateusers', compact('updateUsers', 'roles'));
     }
 
-    public function findUserForUpdate($id){
-        $userForUpdate= User::find($id);
+    public function findUserForUpdate($id)
+    {
+        $userForUpdate = User::find($id);
 
         return view('edituser', compact('userForUpdate'));
     }
 
-    public function updateUser(Request $request){
+    public function updateUser(Request $request)
+    {
         $userForUpdate = User::find($request->input('id'));
-        
+
         $userForUpdate->name = $request->name;
         $userForUpdate->surname = $request->surname != "" ? $request->surname : null;
         $userForUpdate->email = $request->email;
@@ -71,7 +118,8 @@ class UserController extends Controller implements IRoles
         return redirect('/updateusers');
     }
 
-    public function deleteUser(Request $request){
+    public function deleteUser(Request $request)
+    {
         $userForDelete = User::find($request->input('id'));
 
         $userForDelete->delete();
@@ -79,10 +127,10 @@ class UserController extends Controller implements IRoles
         return redirect('/updateusers');
     }
 
-    private function getAllRoles(){
+    private function getAllRoles()
+    {
         $roles = Roles::all();
 
         return $roles;
     }
-
 }

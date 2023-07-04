@@ -28,7 +28,7 @@ class IndexController extends Controller
         $destinations = Destination::inRandomOrder()
             ->take(3)
             ->get();
-            
+
         if (is_null($featuredAgency) && (count($destinations) <= 0) && (count($agencies) <= 0)) {
             return response('No data in database :(', 404);
         }
