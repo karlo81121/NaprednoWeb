@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RegisterController;
@@ -44,6 +45,14 @@ Route::post('/register/agency', [UserController::class, 'registerAgency']);
 
 // ==== Logout ====
 Route::get('/logout', [UserController::class, 'logout']);
+
+
+
+// ==== Profile ====
+Route::get('/profile', [ProfileController::class, 'get']);
+
+
+
 
 
 

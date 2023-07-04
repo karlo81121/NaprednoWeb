@@ -29,8 +29,13 @@ class IndexController extends Controller
             ->take(3)
             ->get();
 
+        $destinationIDsNotToFeature = $destinations->map(function($destination) {
+            return $destination->id;
+        });
+
         $featuredDestination = Destination::inRandomOrder()
             ->where('created_by_id', $featuredAgency->id)
+            ->whereNotIn('id', $destinationIDsNotToFeature)
             ->take(1)
             ->get()
             ->first();
