@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RegisterController;
-
+use App\Http\Controllers\UserController;
 
 // === Login & Register ===
 Route::middleware([
@@ -16,31 +17,44 @@ Route::middleware([
 // ==== Index ====
 Route::middleware([])->get('/', [IndexController::class, 'get']);
 
+// ==== Login ====
 Route::get('/login', function() {
     return view('auth.login');
 });
 
+Route::post('/login', [UserController::class, 'login']);
+
+// ==== Registration ====
 Route::get('/register', function() {
     return view('auth.register');
 });
+
 
 Route::get('/register/user', function() {
     return view('auth.register_user');
 });
 
+Route::post('/register/user', [UserController::class, 'registerUser']);
+
+
 Route::get('/register/agency', function() {
     return view('auth.register_agency');
 });
 
-Route::post('register', [RegisterController::class, 'registerUser']);
+Route::post('/register/agency', [UserController::class, 'registerAgency']);
+
+// ==== Logout ====
+Route::get('/logout', [UserController::class, 'logout']);
+
+
+
+// ==== Profile ====
+Route::get('/profile', [ProfileController::class, 'get']);
 
 
 
 
-Route::get('/logout', [RegisterController::class, 'logoutUser']);
 
-Route::post('/loginuser', [RegisterController::class, 'loginUser'])->name('loginuser');
-//Route::post('/login-user', [RegisterController::class, 'loginUser'])->name('loginuser');
 
 //temp routes (obrišite kad budete pisali prave rute)
 Route::get('/edit-destination', function(){

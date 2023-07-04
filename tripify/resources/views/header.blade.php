@@ -2,7 +2,7 @@
     <h1 class="text-dark">Tripify</h1>
     <div class="authentication-container">
         @auth
-            <a href="{{ url('/') }}" class="text-dark">Dashboard</a>
+            <a href="{{ url('/profile') }}" class="text-dark">Profile</a>
             <a href="{{ url('/logout') }}" class="text-dark">Log Out</a>
         @else
             @if (!Str::contains(request()->url(), 'login'))
@@ -10,7 +10,7 @@
             @endif
 
            @if (!Str::contains(request()->url(), 'register'))
-                <a href="{{ url('register-as') }}" class="text-dark mx-1">Register</a>
+                <a href="{{ url('register') }}" class="text-dark mx-1">Register</a>
             @endif
         @endauth
     </div>
