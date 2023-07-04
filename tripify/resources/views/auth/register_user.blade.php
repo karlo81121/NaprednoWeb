@@ -21,7 +21,7 @@
         <x-authentication-card>
 
             <div class="container register-container w-25">
-                <form class="form" method="POST" action="{{ route('register') }}">
+                <form class="form" method="POST" action="{{ url('/register/user') }}">
                     @csrf
 
                     <div>
@@ -64,7 +64,7 @@
                         <button>
 
                             <div class="already-registered-container text-center mt-3">
-                                <a href="{{ route('login') }}">
+                                <a href="{{ url('/login') }}">
                                     {{ __('Already registered?') }}
                                 </a>
                             </div>

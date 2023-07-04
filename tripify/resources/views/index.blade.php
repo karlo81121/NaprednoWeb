@@ -16,12 +16,12 @@
 <body>
     @include('header')
 
-    @if (!is_null($featuredAgency))
+    @if (!is_null($featuredAgency) && !is_null($featuredDestination))
         <div class="container mt-5 check-this-out-container mb-5">
-            <img src="{{ URL::asset('/images/trip.jpg') }}" class="check-this-out-picture" />
+            <img src="{{ $featuredDestination->picture }}" class="check-this-out-picture" />
             <div class="top-left">CHECK THIS OUT</div>
-            <div class="bottom-left-agency">Agencija Joza Kovaćušin</div>
-            <div class="bottom-left-trip">PUTOVANJE NA MALDIVE</div>
+            <div class="bottom-left-agency">{{ $featuredAgency->name }}</div>
+            <div class="bottom-left-trip">{{ $featuredDestination->name }}</div>
         </div>
     @endif
 
@@ -34,7 +34,7 @@
             @foreach ($destinations as $destination)
                 <a href="#">
                     <div class="card destination-card w-100 mb-3">
-                        <img src="{{ URL::asset('/images/trip.jpg') }}" width="250" height="250" />
+                        <img src="{{ $destination->picture }}" width="250" height="250" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $destination->name }}</h5>
                             <p class="card-price">{{ $destination->cost }}</p>

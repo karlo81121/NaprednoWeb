@@ -29,12 +29,19 @@ class IndexController extends Controller
             ->take(3)
             ->get();
 
+        $featuredDestination = Destination::inRandomOrder()
+            ->where('created_by_id', $featuredAgency->id)
+            ->take(1)
+            ->get()
+            ->first();
+
         if (is_null($featuredAgency) && (count($destinations) <= 0) && (count($agencies) <= 0)) {
             return response('No data in database :(', 404);
         }
 
         return view('index')
             ->with('featuredAgency', $featuredAgency)
+            ->with('featuredDestination',$featuredDestination)
             ->with('destinations', $destinations)
             ->with('agencies', $agencies);
     }

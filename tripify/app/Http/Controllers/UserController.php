@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller implements IRoles
+class UserController extends Controller
 {
     public function registerUser(Request $request)
     {
@@ -34,11 +34,14 @@ class UserController extends Controller implements IRoles
 
     public function registerAgency(Request $request)
     {
+        //dd($request);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => config('enums.roles.AGB'),
+            'description' => $request->description,
+            'role_id' => config('enums.roles.AGN'),
+            'picture' => $request->imageurl,
             'isverified' => true
         ]);
 
@@ -47,6 +50,30 @@ class UserController extends Controller implements IRoles
         }
 
         Auth::login($user);
+
+        return redirect('/');
+    }
+
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        
+        if (is_null($user)) {
+            return response('No such user in database :(', 404);
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return response('Wrong password :(', 403);
+        }
+        
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
 
         return redirect('/');
     }
