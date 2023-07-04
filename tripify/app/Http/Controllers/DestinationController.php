@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class DestinationController extends Controller
 {
-    
+    public function getFeaturedDestinations()
+    {
+        return Destination::inRandomOrder()
+        ->take(4)
+            ->get();
+    }
+
     public function getAllDestinations()
     {
         $destinations = Destination::all();

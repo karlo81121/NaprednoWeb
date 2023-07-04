@@ -5,21 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RegisterController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// ==== Index ====
-Route::middleware([])->get('/', [IndexController::class, 'get']);
-
-Route::post('register', [RegisterController::class, 'registerUser']);
 
 // === Login & Register ===
 Route::middleware([
@@ -28,19 +13,29 @@ Route::middleware([
     'verified'
 ]);
 
-Route::get('/register-as', function() {
-    return view('auth.register-as');
+// ==== Index ====
+Route::middleware([])->get('/', [IndexController::class, 'get']);
+
+Route::get('/login', function() {
+    return view('auth.login');
 });
 
-Route::get('/register-normal', function() {
+Route::get('/register', function() {
     return view('auth.register');
 });
 
-Route::get('/register-business', function() {
-    return view('auth.register-business');
+Route::get('/register/user', function() {
+    return view('auth.register_user');
+});
+
+Route::get('/register/agency', function() {
+    return view('auth.register_agency');
 });
 
 Route::post('register', [RegisterController::class, 'registerUser']);
+
+
+
 
 Route::get('/logout', [RegisterController::class, 'logoutUser']);
 
