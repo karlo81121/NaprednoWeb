@@ -20,9 +20,10 @@ return new class extends Migration
             $table->integer('cost');
             $table->foreignId('dest_type_id');
             $table->foreignId('dest_transp_type_id');
-            $table->foreignId('dest_status_id');
             $table->foreignId('state_id');
-            $table->foreignId('canc_reason_id')->nullable();
+            $table->foreignId('created_by_id');
+            $table->integer('capacity');
+            $table->string('picture');
             $table->timestamps();
         });
     }

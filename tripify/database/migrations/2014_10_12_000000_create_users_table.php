@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('role_id')->nullable();
             $table->string('description')->nullable();
             $table->boolean('isverified')->default(false);
+            $table->string('picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

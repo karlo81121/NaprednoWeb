@@ -28,5 +28,10 @@ ALTER TABLE destination_reservations ADD FOREIGN KEY (reserv_status_id) REFERENC
 //USERS
 ALTER TABLE users ADD FOREIGN KEY (role_id) REFERENCES roles(id);
 
-//PICTURES
-ALTER TABLE pictures ADD FOREIGN KEY (destination_id) REFERENCES destinations(id);
+---Novo (4.7.2023. 20:02)
+
+//ATTRACTIONS
+ALTER TABLE attractions ADD FOREIGN KEY (destination_id) REFERENCES destinations(id);
+
+//DESTINATIONS
+ALTER TABLE pictures ADD FOREIGN KEY (created_by_id) REFERENCES users(id);

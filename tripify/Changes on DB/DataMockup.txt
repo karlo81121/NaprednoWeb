@@ -1,0 +1,23 @@
+//DESTINATIONS
+
+INSERT INTO DESTINATIONS(id, name, description, cost, destin_type_id, dest_transp_type_id, state_id, created_by_id, capacity, picture) VALUES (1, 'Obala Hrvatske', 'Krk - Hvar - Dubrovnik - Split', 600, 1, 1, 3, 1, 50, 'https://th.bing.com/th/id/R.54010f941c680f1e18cedbe916974c5f?rik=jHF0bLgQS78pPA&riu=http%3a%2f%2fwaypoint.hr%2fwp-content%2fuploads%2f2016%2f04%2fPakleni-islands.jpg&ehk=Bi4qfqkbDsbj4SnBhs66KZWtMCH0sC54u71wwfqgUnU%3d&risl=&pid=ImgRaw&r=0');
+
+INSERT INTO DESTINATIONS(id, name, description, cost, destin_type_id, dest_transp_type_id, state_id, created_by_id, capacity, picture) VALUES (2, 'Krš i lom vrhova Hrvatske', 'Dinara - Velebit - Biokovo', 100, 1, 1, 3, 1, 50, 'https://th.bing.com/th/id/R.a24eb06c18b01af02fa32ce81162d3b2?rik=WGvn%2bb307KRbYA&riu=http%3a%2f%2fcroatia.hr%2fImages%2ft900x600-19473%2fRozanski-vrh.jpg&ehk=XfVOA0KWs9lt6kSrtTgtK35CrZcE8oBFUElo85cLwbU%3d&risl=&pid=ImgRaw&r=0');
+
+INSERT INTO DESTINATIONS(id, name, description, cost, destin_type_id, dest_transp_type_id, state_id, created_by_id, capacity, picture) VALUES (3, 'Drevne piramde', 'Keopsove pirmade u Gizi', 1000, 1, 1, 2, null, 1, 50, 'https://live.staticflickr.com/8186/8441224171_f03e83d76c_b.jpg');
+
+INSERT INTO DESTINATIONS(id, name, description, cost, destin_type_id, dest_transp_type_id, state_id, created_by_id, capacity, picture) VALUES (4, 'Krstarenje Nilom', 'Od Sredozemnog do Arapskog mora', 1000, 1, 1, 3, null, 1, 50, 'https://th.bing.com/th/id/R.0379a34dfb7f6cad6c3b4493a5f7559f?rik=MvHxg5%2fcZxR1zg&riu=http%3a%2f%2f2.bp.blogspot.com%2f_AOGK87WAhlk%2fTEPFeGm4ELI%2fAAAAAAAAMC0%2fSBVe9Lyagqs%2fs1600%2fNile_River_Aswan_Egypt.jpg&ehk=GoRcEBvoBgR7IC5pdNTARGf2iZ%2boRt15175sQgAQLeU%3d&risl=&pid=ImgRaw&r=0');
+
+INSERT INTO DESTINATIONS(id, name, description, cost, destin_type_id, dest_transp_type_id, state_id, created_by_id, capacity, picture) VALUES (5, 'The Kineski zid', 'Najpoznatiji zid na svijetu', 1000, 1, 1, 3, null, 1, 50, 'https://th.bing.com/th/id/R.2f0164d73114c4a802bbda9c523140b6?rik=cjn%2fwzrcfKk8%2bA&riu=http%3a%2f%2fwww.thehistoryhub.com%2fwp-content%2fuploads%2f2014%2f05%2fGreat-Wall-of-China.jpg&ehk=tmLVe1z6OiVA0tSoC%2b%2beENTkdg%2fsJLJq7oZ7LcdwnWA%3d&risl=&pid=ImgRaw&r=0');
+
+//ATTRACTIONS
+
+INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (1, 'Piramida', 'Najveca piramida na svijetu', 3, 'https://media-cdn.tripadvisor.com/media/photo-s/0a/a6/10/2e/keops-pyramid.jpg');
+
+INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (2, 'Krk', 'Najosuncaniji otok u Hrvatskoj', 1, 'https://th.bing.com/th/id/OIP.1pOaz_cM0JARhrrI8Zt-8QHaE6?pid=ImgDet&rs=1');
+
+INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (3, 'Dinara', 'Najveći vrh u Hrvatskoj', 2, 'https://s3-us-west-1.amazonaws.com/peakery-media/images/items/main/cache/dinara-0.jpg.910x680_q95.jpg');
+
+INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (4, 'Nil', 'Beskrajna rijeka', 4, 'https://th.bing.com/th/id/R.aee7d12ec2d64249aa6f483bb8a0ca83?rik=0XBLRzvCtgD8mQ&pid=ImgRaw&r=0');
+
+INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (5, 'Kineski zid', 'Najdrevnija atrakcija na svijetu', 5, 'https://th.bing.com/th/id/R.fce5bb6307e5128cb27d406b07b2fb37?rik=lhJ9DxtOIOSW5Q&pid=ImgRaw&r=0');

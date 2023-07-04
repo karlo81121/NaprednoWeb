@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('destination_id');
+            $table->foreignId('attraction_id');
             $table->string('url');
         });
     }
