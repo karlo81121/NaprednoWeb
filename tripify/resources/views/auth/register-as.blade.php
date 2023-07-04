@@ -19,8 +19,8 @@
         </div>
 
         <div class="register-buttons mt-2">
-            <button class="btn btn-dark mx-2">Normal User</button>
-            <button class="btn btn-dark mx-2">Business</button>
+            <button class="btn btn-dark mx-2" onclick="window.location = '{{ url('/register-normal') }}'">Normal User</button>
+            <button class="btn btn-dark mx-2" onclick="window.location = '{{ url('/register-business') }}'">Business</button>
         </div>
     </div>
 

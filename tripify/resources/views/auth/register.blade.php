@@ -21,37 +21,31 @@
                 @csrf
 
                 <div>
-                    <label for="name" value="{{ __('Name') }}">First Name</label>
+                    <label for="name" value="name">Name</label>
                     <br>
-                    <input class="rounded" id="first-name" type="text" name="first-name" :value="old('name')" required autocomplete="OFF" />
+                    <input class="rounded" id="name" type="text" name="name" :value="old('name')" required autocomplete="OFF" />
                 </div>
 
                 <div class="mt-3">
-                    <label for="name" value="{{ __('Name') }}">Last Name</label>
+                    <label for="name" value="surname">Surname</label>
                     <br>
-                    <input class="rounded" id="last-name" type="text" name="last-name" :value="old('name')" required autocomplete="OFF" />
+                    <input class="rounded" id="surname" type="text" name="surname" :value="old('surname')" required autocomplete="OFF" />
                 </div>
 
                 <div class="mt-3">
-                    <label for="name" value="{{ __('Name') }}">Birth Date</label>
-                    <br>
-                    <input class="rounded birth-date-input" id="birth-date" type="date" name="birth-date" :value="old('name')" required autocomplete="OFF" />
-                </div>
-
-                <div class="mt-3">
-                    <label for="email" value="{{ __('Email') }}">Email</label>
+                    <label for="email" value="email">Email</label>
                     <br>
                     <input class="rounded" id="email" type="email" name="email" :value="old('email')" required autocomplete="OFF" />
                 </div>
 
                 <div class="mt-3">
-                    <label for="password" value="{{ __('Password') }}">Password</label>
+                    <label for="password" value="password">Password</label>
                     <br>
                     <input class="rounded" id="password" type="password" name="password" required autocomplete="OFF" />
                 </div>
 
                 <div class="mt-3">
-                    <label for="password_confirmation" value="{{ __('Confirm Password') }}">Confirm Password</label>
+                    <label for="password_confirmation" value="password_confirmation">Confirm Password</label>
                     <br>
                     <input class="rounded" id="password_confirmation" type="password" name="password_confirmation" required autocomplete="OFF" />
                 </div>

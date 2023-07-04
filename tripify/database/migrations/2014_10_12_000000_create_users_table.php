@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('role_id')->nullable();
             $table->string('description')->nullable();
-            $table->boolean('isverified');
+            $table->boolean('isverified')->default(false);
+            $table->rememberToken();
             $table->timestamps();
         });
     }

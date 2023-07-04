@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,27 +16,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ==== Index ====
+Route::middleware([])->get('/', [IndexController::class, 'get']);
 
+Route::post('register', [RegisterController::class, 'registerUser']);
+
+// === Login & Register ===
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+]);
+
+Route::get('/register-as', function() {
+    return view('auth.register-as');
 });
+
+Route::get('/register-normal', function() {
+    return view('auth.register');
+});
+
+Route::get('/register-business', function() {
+    return view('auth.register-business');
+});
+
+Route::post('register', [RegisterController::class, 'registerUser']);
+
+Route::get('/logout', [RegisterController::class, 'logoutUser']);
+
+Route::post('/loginuser', [RegisterController::class, 'loginUser'])->name('loginuser');
+//Route::post('/login-user', [RegisterController::class, 'loginUser'])->name('loginuser');
 
 //temp routes (obrišite kad budete pisali prave rute)
 Route::get('/edit-destination', function(){
     return view('edit-destination');
-});
-
-Route::get('/register-as', function(){
-    return view('register-as');
 });
 
 Route::get('/business-registration', function() {

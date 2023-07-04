@@ -21,12 +21,13 @@
             @if (session('status'))
                 <div>
                     {{ session('status') }}
-                </div>
+                </div> 
             @endif
 
                 <div class="login-form">
-                <form method="POST" action="{{ route('login') }}">
+                <form class="form" method="POST" action="{{ route('loginuser') }}">
                     @csrf
+                
                     <div>
                         <label for="email" value="{{ __('Email') }}">Email</label>
                         <br>
@@ -64,7 +65,7 @@
                     <div class="registration-container">
                         <h1 class="not-a-member-title mb-4">Not a member?</h1>
                         <p class="registration-description mb-4">No matter if you're looking for a trip or want to promote your business, you can.</p>
-                        <a href="{{ route('register') }}" class="text-decoration-underline">REGISTER HERE</a>
+                        <a href="{{ url('/register-as') }}" class="text-decoration-underline">REGISTER HERE</a>
                     </div>
                 </div>
 
