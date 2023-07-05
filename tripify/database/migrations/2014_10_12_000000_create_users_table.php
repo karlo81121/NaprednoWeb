@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('surname')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('role_id')->nullable();
+            $table->foreignId('role_id');
             $table->string('description')->nullable();
             $table->boolean('isverified')->default(false);
-            $table->string('picture')->nullable();
+            $table->string('picture', 1000)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

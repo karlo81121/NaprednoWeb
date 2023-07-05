@@ -18,11 +18,6 @@ INSERT INTO `destination_reservation_statuses`(`id`, `code`, `description`) VALU
 INSERT INTO `destination_reservation_statuses`(`id`, `code`, `description`) VALUES ('2','APPR','User reservation approved');
 INSERT INTO `destination_reservation_statuses`(`id`, `code`, `description`) VALUES ('3','DECL','User reservation declined');
 
-INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('1','CREA','Destination created by agency');
-INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('2','PROG','In progress for reservations');
-INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('3','DONE','Iterary done');
-INSERT INTO `destination_statuses`(`id`, `code`, `description`) VALUES ('4','CANC','Destination cancelled');
-
 INSERT INTO `cancellation_reasons`(`id`, `code`, `description`) VALUES ('1','1','Cancelled by user');
 INSERT INTO `cancellation_reasons`(`id`, `code`, `description`) VALUES ('2','2','Cancelled by agency');
 INSERT INTO `cancellation_reasons`(`id`, `code`, `description`) VALUES ('3','3','Cancelled by administrator');

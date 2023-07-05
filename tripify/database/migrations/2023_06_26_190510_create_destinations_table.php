@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreignId('state_id');
             $table->foreignId('created_by_id');
             $table->integer('capacity');
-            $table->string('picture');
+            $table->string('picture', 1000);
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->foreignId('destination_id');
-            $table->string('picture');
+            $table->string('picture', 1000);
         });
     }
 
