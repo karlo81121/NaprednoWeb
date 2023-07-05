@@ -1,5 +1,5 @@
 <div class="container d-flex justify-content-between align-items-baseline mt-2">
-    <h1 class="text-dark">Tripify</h1>
+    <h1 class="text-dark mt-4">Tripify</h1>
     <div class="authentication-container">
         @auth
             <a href="{{ url('/profile') }}" class="text-dark">Profile</a>

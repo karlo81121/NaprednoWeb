@@ -92,3 +92,7 @@ Route::get('/create-trip', function(){
 Route::get('/agency-profile', function() {
     return view('agency-profile');
 });
+
+Route::get('/error', function(){
+    return view('error-page');
+});

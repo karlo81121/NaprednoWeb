@@ -3,10 +3,17 @@ body {
     padding: 0;
 }
 
+input {
+    width: 100%;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .login-container {
     display: flex;
     justify-content: center;
-    margin-top: 15%;
+    margin-top: 8%;
 }
 
 .login-button {

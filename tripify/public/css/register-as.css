@@ -4,20 +4,13 @@ body {
 }
 
 .body-container {
-    border: 1px solid #000000;
+    margin: auto;
     width: 20%;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000000;
     border-radius: 5px;
-    margin-top: 10%;
-    padding: 1%;
-}
-
-.register-as-title {
-    display: flex;
-    justify-content: center;
-}
-
-.register-buttons {
-    display: flex;
-    justify-content: center;
+    padding: 20px;
 }
