@@ -42,11 +42,6 @@
             <input required type="number" id="reservation-count" name="capacity" class="mb-2">
             <br>
 
-            <label for="accommodation"><b>Accommodation</b></label>
-            <br>
-            <input required type="text" id="accommodation" name="accomodation" class="mb-3">
-            <br>
-
             <span><b>Transportation Options</b></span>
             <br>
 

@@ -13,11 +13,19 @@
 </head>
 
 <body>
+    @if (session('message'))
+        <div class="alert alert-warning">
+            {{ session('message') }}
+        </div>
+    @endif
+
     @include('header')
 
     @if (!is_null($featuredAgency) && !is_null($featuredDestination))
-        <div class="container mt-5 check-this-out-container mb-5">
-            <a href="{{ url('/destination/' . $featuredDestination->id) }}"><img src="{{ $featuredDestination->picture }}" class="check-this-out-picture" /></a>
+        <div class="container mt-4 check-this-out-container" style="overflow: hidden">
+            <a style="display: block;" href="{{ url('/destination/' . $featuredDestination->id) }}"><img
+                    src="{{ $featuredDestination->picture }}" class="check-this-out-picture"
+                    style="object-fit: cover;" /></a>
             <div class="top-left">CHECK THIS OUT</div>
             <div class="bottom-left-agency">{{ $featuredAgency->name }}</div>
             <div class="bottom-left-trip">{{ $featuredDestination->name }}</div>
@@ -25,7 +33,7 @@
     @endif
 
     @if (!is_null($destinations) && count($destinations) > 0)
-        <div class="container destionation-container mb-5">
+        <div class="container mt-4 destionation-container">
             <div class="destination-title-container">
                 <h3 class="text-dark mb-4">Destinations</h3>
             </div>
@@ -33,10 +41,11 @@
             @foreach ($destinations as $destination)
                 <a href="{{ url('/destination/' . $destination->id) }}">
                     <div class="card destination-card w-100 mb-3">
-                        <img src="{{ $destination->picture }}" width="250" height="250" />
+                        <img src="{{ $destination->picture }}" width="250" height="250"
+                            style="object-fit: cover;" />
                         <div class="card-body">
-                            <h5 class="card-title">{{ $destination->name }}</h5>
-                            <p class="card-price">{{ $destination->cost }}</p>
+                            <h5 class="card-title"><b>{{ $destination->name }}</b></h5>
+                            <p class="card-price">{{ $destination->cost }}$</p>
                             <p class="card-text">{{ $destination->description }}</p>
                         </div>
                     </div>
@@ -46,7 +55,7 @@
     @endif
 
     @if (!is_null($agencies) && count($agencies) > 0)
-        <div class="container agencies-container mb-5">
+        <div class="container mt-4 agencies-container mb-4">
             <div class="agencies-title-container">
                 <h3 class="text-dark mb-4">Agencies</h3>
             </div>

@@ -33,15 +33,12 @@
 
             @foreach ($destinations as $destination)
                 <a href="#">
-                    <div class="card destination-card w-100 mb-3">
-                        <img src="images/trip.jpg" width="250" height="250" />
+                    <div class="card destination-card w-100 mb-3" style="overflow: hidden">
+                        <img src="{{ $destination->picture }}" width="250" height="250" />
                         <div class="card-body">
-                            <h5 class="card-title">Maldivi</h5>
-                            <p class="card-price">450 $</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum dolor
-                                explicabo perferendis pariatur saepe blanditiis modi. Inventore ipsa rem commodi a
-                                voluptas
-                                provident distinctio magni! Cupiditate nobis neque voluptatem dolores?</p>
+                            <h5 class="card-title">{{ $destination->name }}</h5>
+                            <p class="card-price">{{ $destination->cost }} $</p>
+                            <p class="card-text">{{ $destination->description }}</p>
                         </div>
                     </div>
                 </a>

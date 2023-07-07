@@ -18,7 +18,8 @@ class DestinationController extends Controller
         $destination = Destination::find($id);
 
         if (is_null($destination)) {
-            return response('No such destination in database :(', 404);
+            return redirect('/')
+                ->with('error', "No such destination in database!");
         }
 
         $attractions = Attractions::where('destination_id', $id)->get();
@@ -27,12 +28,12 @@ class DestinationController extends Controller
         $type = DestinationTypes::find($destination->dest_type_id);
 
         $userRoleID = config('enums.roles.USER');
-        $authUserRoleID = User::find(Auth::user()->id)->role_id;
+        $authUserRoleID = is_null(Auth::user()) ? -1 : User::find(Auth::user()->id)->role_id;
 
         $canBookReservation = $authUserRoleID == $userRoleID && $destination->capacity > 0;
 
         $didMakeReservation = DestinationReservations::where('destination_id', $id)
-            ->where('user_id', Auth::user()->id)
+            ->where('user_id', is_null(Auth::user()) ? -1 : Auth::user()->id)
             ->exists();
 
         return view('destination_details')

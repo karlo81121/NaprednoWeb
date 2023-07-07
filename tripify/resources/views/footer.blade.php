@@ -4,17 +4,11 @@
 
 <div class="footer-container">
     <div class="footer">
-        <div class="first-section mx-5">
-            <p>Property of T-Agency d.o.o.</p>
-            <p>2023 Copyright</p>
-            <p>All rights reserved</p>
-        </div>
-        <div class="first-line"></div>
         <div class="second-section mx-5">
             <p>You can email us for support:</p>
             <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope"
-                    viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-envelope" viewBox="0 0 16 16">
                     <path
                         d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
                 </svg>
@@ -30,15 +24,22 @@
                 +385 95 581 7660
             </p>
         </div>
+
+        <div class="first-line"></div>
+
+        <div class="first-section mx-5">
+            <p><b>Property of T-Agency d.o.o.</b></p>
+            <p>2023 Copyright</p>
+            <p>All rights reserved</p>
+        </div>
+
         <div class="second-line"></div>
+
         <div class="third-section mx-5">
             <p>Created by:</p>
             <p>Adžić Karlo</p>
             <p>Bruno Benčević</p>
             <p>Fran Zamaklar</p>
-            <a href="#">
-                <p class="more-about-us">Click here to find more about us.</p>
-            </a>
         </div>
     </div>
 </div>

@@ -22,7 +22,7 @@
 
         @if ($destination->capacity <= 0)
             <div class="sold-out-container mt-5 mb-5">
-                <h2 class="text-danger">SOLD OUT</h2>
+                <h2 class="text-danger"><b>SOLD OUT</b></h2>
             </div>
         @endif
 
