@@ -30,7 +30,7 @@ class RegisterController extends Controller
     public function loginUser(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        dd($user->id);
+        
         if ($user && Hash::check($request->password, $user->password)) {
         
             Auth::login($user);

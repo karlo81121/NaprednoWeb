@@ -9,4 +9,17 @@ class Destination extends Model
 {
     use HasFactory;
     protected $table = 'destinations';
+
+    protected $fillable = [
+        'name',
+        'description',
+        'cost',
+        'dest_type_id',
+        'state_id',
+        'dest_transp_type_id',
+        'created_by_id',
+        'capacity',
+        'picture'
+        
+    ];
 }

@@ -17,7 +17,7 @@
 
     @if (!is_null($featuredAgency) && !is_null($featuredDestination))
         <div class="container mt-5 check-this-out-container mb-5">
-            <img src="{{ $featuredDestination->picture }}" class="check-this-out-picture" />
+            <a href="{{ url('/destination/' . $featuredDestination->id) }}"><img src="{{ $featuredDestination->picture }}" class="check-this-out-picture" /></a>
             <div class="top-left">CHECK THIS OUT</div>
             <div class="bottom-left-agency">{{ $featuredAgency->name }}</div>
             <div class="bottom-left-trip">{{ $featuredDestination->name }}</div>
@@ -31,7 +31,7 @@
             </div>
 
             @foreach ($destinations as $destination)
-                <a href="#">
+                <a href="{{ url('/destination/' . $destination->id) }}">
                     <div class="card destination-card w-100 mb-3">
                         <img src="{{ $destination->picture }}" width="250" height="250" />
                         <div class="card-body">
@@ -53,9 +53,9 @@
 
             <div class="agencies-cards">
                 @foreach ($agencies as $agency)
-                    <a href="#">
+                    <a href="{{ url('/agency/' . $agency->id) }}">
                         <div class="card" style="width: 20rem;">
-                            <img src="{{ URL::asset('/images/trip.jpg') }}" width="300" height="250" />
+                            <img src="{{ $agency->picture }}" width="300" height="250" />
                             <div class="card-body">
                                 <h5 class="card-title text-center">{{ $agency->name }}</h5>
                             </div>

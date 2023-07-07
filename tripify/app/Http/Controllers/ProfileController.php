@@ -34,8 +34,8 @@ class ProfileController extends Controller
     private function getAgencyProfile()
     {
         $destinations = Destination::where('created_by_id', Auth::user()->id)->get();
-        
-        $pendingReservationStatusID = config('enums.destination_reservation_statuses.PEND');
+
+        $pendingReservationStatusID = 0; //config('enums.destination_reservation_statuses.PEND');
 
         $reservations = DestinationReservations::join('destinations', 'destination_reservations.destination_id', '=', 'destinations.id')
             ->join('users', 'destination_reservations.user_id', '=', 'users.id')
@@ -51,6 +51,23 @@ class ProfileController extends Controller
 
     private function getUserProfile()
     {
-        return view('profile.user');
+        $approvedStatusID = config('enums.destination_reservation_statuses.APPR');
+        $pendingStatus = 0;
+
+        $approvedDestinations = DestinationReservations::where('user_id', Auth::user()->id)
+            ->where('reserv_status_id', $approvedStatusID)
+            ->join('destinations', 'destination_reservations.destination_id', '=', 'destinations.id')
+            ->select('destinations.id as id', 'destinations.name as name', 'destinations.cost as cost', 'destinations.description as description', 'destinations.picture as picture')
+            ->get();
+
+        $pendingDestinations = DestinationReservations::where('user_id', Auth::user()->id)
+            ->where('reserv_status_id', $pendingStatus)
+            ->join('destinations', 'destination_reservations.destination_id', '=', 'destinations.id')
+            ->select('destinations.id as id', 'destinations.name as name', 'destinations.cost as cost', 'destinations.description as description', 'destinations.picture as picture')
+            ->get();
+
+        return view('profile.user')
+            ->with('approvedDestinations', $approvedDestinations)
+            ->with('pendingDestinations', $pendingDestinations);
     }
 }
