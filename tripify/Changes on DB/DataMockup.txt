@@ -18,3 +18,9 @@ INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (
 INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (4, 'Nil', 'Beskrajna rijeka', 4, 'https://th.bing.com/th/id/R.aee7d12ec2d64249aa6f483bb8a0ca83?rik=0XBLRzvCtgD8mQ&pid=ImgRaw&r=0');
 
 INSERT INTO ATTRACTIONS(id, name, description, destination_id, picture) VALUES (5, 'Kineski zid', 'Najdrevnija atrakcija na svijetu', 5, 'https://th.bing.com/th/id/R.fce5bb6307e5128cb27d406b07b2fb37?rik=lhJ9DxtOIOSW5Q&pid=ImgRaw&r=0');
+
+//DESTINATION_RESERVATIONS
+
+INSERT DESTINATION_RESERVATIONS(user_id, destination_id, reserv_status_id) VALUES(5, 1, 1);
+INSERT DESTINATION_RESERVATIONS(user_id, destination_id, reserv_status_id) VALUES(5, 3, 2);
+INSERT DESTINATION_RESERVATIONS(user_id, destination_id, reserv_status_id) VALUES(5, 2, 3);

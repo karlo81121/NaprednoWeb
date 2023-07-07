@@ -7,19 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ URL::asset('css/login.css') }}" />
-    
-    <link rel="stylesheet" href="{{ URL::asset('css/welcome.css') }}" />
+    <link rel="stylesheet" href="css/login.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    @include('header')
+@include('header')
 
-    <x-guest-layout>
-        <x-authentication-card>
             <div class="container login-container">
                 <div>
 
@@ -62,12 +58,9 @@
                         </div>
                     </div>
 
-                </div>
             </div>
-        </x-authentication-card>
-    </x-guest-layout>
-
-    @include('footer') 
+        </div>
+    @include('footer')
 </body>
 
 </html>

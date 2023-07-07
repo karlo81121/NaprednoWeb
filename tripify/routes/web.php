@@ -77,3 +77,6 @@ Route::post('/reservation/delete/{id}', [DestinationReservationsController::clas
 // === Agency ===
 Route::get('/agency/{id}', [AgencyController::class, 'get']);
 
+Route::get('/error', function(){
+    return view('error-page');
+});
