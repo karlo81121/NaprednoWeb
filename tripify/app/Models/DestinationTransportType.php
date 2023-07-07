@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class DestinationTransportType extends Model
 {
     use HasFactory;
-    protected $table = 'destinationtransporttype';
+    protected $table = 'destination_transport_types';
 }

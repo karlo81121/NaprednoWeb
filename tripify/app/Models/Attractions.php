@@ -9,4 +9,12 @@ class Attractions extends Model
 {
     use HasFactory;
     protected $table = 'attractions';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'destination_id',
+        'picture'
+    ];
 }

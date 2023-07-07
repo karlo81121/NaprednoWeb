@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;900&display=swap" rel="stylesheet">
 
-    <title>User Profile</title>
+    <title>Tripify - Profile</title>
 </head>
 
 <body>
@@ -21,93 +21,48 @@
             <h3 class="text-dark mb-4">MY TRIPS</h3>
         </div>
 
-        <a href="#">
-            <div class="card destination-card w-100 mb-3">
-                <img src="images/trip.jpg" width="250" height="250" />
-                <div class="card-body">
-                    <h5 class="card-title">Maldivi</h5>
-                    <p class="card-price">450 $</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum dolor
-                        explicabo perferendis pariatur saepe blanditiis modi. Inventore ipsa rem commodi a voluptas
-                        provident distinctio magni! Cupiditate nobis neque voluptatem dolores?</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="#">
-            <div class="card destination-card w-100 mb-3">
-                <img src="images/trip.jpg" width="250" height="250" />
-                <div class="card-body">
-                    <h5 class="card-title">Belišće</h5>
-                    <p class="card-price">450 $</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, voluptate? Veniam
-                        nostrum quae suscipit dolore, quia culpa. Reiciendis dolores, quam voluptatem laudantium quod
-                        beatae, ad nobis eveniet harum, dolore voluptates.</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="#">
-            <div class="card destination-card w-100 mb-3">
-                <img src="images/trip.jpg" width="250" height="250" />
-                <div class="card-body">
-                    <h5 class="card-title">Podvinje</h5>
-                    <p class="card-price">450 $</p>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cupiditate
-                        eveniet voluptate quisquam placeat officiis ipsum, ex, exercitationem, ipsam soluta quasi natus
-                        nihil alias ducimus laboriosam quidem facilis totam. Quisquam?</p>
-                </div>
-            </div>
-        </a>
+        @if (!is_null($approvedDestinations) && count($approvedDestinations) > 0)
+            @foreach ($approvedDestinations as $destination)
+                <a href="destination/{{ $destination->id }}">
+                    <div class="card destination-card w-100 mb-3">
+                        <img src="{{ $destination->picture }}" width="250" height="250" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $destination->name }}</h5>
+                            <p class="card-price">{{ $destination->cost }} $</p>
+                            <p class="card-text">{{ $destination->description }}</p>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        @else
+            You have not booked any destinations yet :/
+        @endif
     </div>
 
-    <div class="container destionation-container mb-5">
-        <div class="destination-title-container">
-            <h3 class="text-dark mb-4">PENDING</h3>
-        </div>
+    @if (!is_null($pendingDestinations) && count($pendingDestinations) > 0)
+        <div class="container destionation-container mb-5">
+            <div class="destination-title-container">
+                <h3 class="text-dark mb-4">PENDING</h3>
+            </div>
 
-        <div class="card destination-card w-100 mb-3">
-            <img src="images/trip.jpg" width="250" height="250" />
-            <div class="card-body">
-                <h5 class="card-title">Maldivi</h5>
-                <p class="card-price">450 $</p>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum dolor explicabo
-                    perferendis pariatur saepe blanditiis modi. Inventore ipsa rem commodi a voluptas provident
-                    distinctio magni! Cupiditate nobis neque voluptatem dolores?</p>
-            </div>
-            <div class="buttons">
-                <button type="button" class="btn btn-danger">CANCEL</button>
-            </div>
-        </div>
+            @foreach ($pendingDestinations as $pDestination)
+                <div class="card destination-card w-100 mb-3">
+                    <img src="{{ $pDestination->picture }}" width="250" height="250" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $pDestination->name }}</h5>
+                        <p class="card-price">{{ $pDestination->cost }} $</p>
+                        <p class="card-text">{{ $pDestination->description }}</p>
+                    </div>
 
-        <div class="card destination-card w-100 mb-3">
-            <img src="images/trip.jpg" width="250" height="250" />
-            <div class="card-body">
-                <h5 class="card-title">Belišće</h5>
-                <p class="card-price">450 $</p>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, voluptate? Veniam
-                    nostrum quae suscipit dolore, quia culpa. Reiciendis dolores, quam voluptatem laudantium quod
-                    beatae, ad nobis eveniet harum, dolore voluptates.</p>
-            </div>
-            <div class="buttons">
-                <button type="button" class="btn btn-danger">CANCEL</button>
-            </div>
-        </div>
+                    <form id="book" action="{{ url('/reservation/delete/' . $pDestination->id) }}" method="POST">
+                        @csrf
 
-        <div class="card destination-card w-100 mb-3">
-            <img src="images/trip.jpg" width="250" height="250" />
-            <div class="card-body">
-                <h5 class="card-title">Podvinje</h5>
-                <p class="card-price">450 $</p>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit cupiditate eveniet
-                    voluptate quisquam placeat officiis ipsum, ex, exercitationem, ipsam soluta quasi natus nihil alias
-                    ducimus laboriosam quidem facilis totam. Quisquam?</p>
-            </div>
-            <div class="buttons">
-                <button type="button" class="btn btn-danger">CANCEL</button>
-            </div>
+                        <button type="submit" class="btn btn-danger mt-2">CANCEL</button>
+                    </form>
+                </div>
+            @endforeach
         </div>
-    </div>
+    @endif
 
     @include('footer')
 </body>

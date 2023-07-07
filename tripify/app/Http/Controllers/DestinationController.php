@@ -2,76 +2,147 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attractions;
 use App\Models\Destination;
+use App\Models\DestinationReservations;
+use App\Models\DestinationTransportType;
+use App\Models\DestinationTypes;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DestinationController extends Controller
 {
-    public function getFeaturedDestinations()
+    public function get(int $id)
     {
-        return Destination::inRandomOrder()
-        ->take(4)
-            ->get();
+        $destination = Destination::find($id);
+
+        if (is_null($destination)) {
+            return response('No such destination in database :(', 404);
+        }
+
+        $attractions = Attractions::where('destination_id', $id)->get();
+
+        $transportation = DestinationTransportType::find($destination->dest_transp_type_id);
+        $type = DestinationTypes::find($destination->dest_type_id);
+
+        $userRoleID = config('enums.roles.USER');
+        $authUserRoleID = User::find(Auth::user()->id)->role_id;
+
+        $canBookReservation = $authUserRoleID == $userRoleID && $destination->capacity > 0;
+
+        $didMakeReservation = DestinationReservations::where('destination_id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->exists();
+
+        return view('destination_details')
+            ->with('destination', $destination)
+            ->with('attractions', $attractions)
+            ->with('transportation', $transportation)
+            ->with('type', $type)
+            ->with('canBookReservation', $canBookReservation)
+            ->with('didMakeReservation', $didMakeReservation);
     }
 
-    public function getAllDestinations()
+    public function getForm()
     {
-        $destinations = Destination::all();
-        
-        return view('dashboard', compact('destinations'));
+        $userRoleID = config('enums.roles.USER');
+        $authUserRoleID = User::find(Auth::user()->id)->role_id;
+
+        if ($authUserRoleID == $userRoleID) {
+            return redirect('/');
+        }
+
+        return view('form.create_destination');
     }
 
-    public function createDestination(Request $request)
+    public function create(Request $request)
     {
-        $destination = new Destination;
+        $destination = Destination::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'cost' => $request->cost,
+            'dest_type_id' => 1,
+            'dest_transp_type_id' => 1,
+            'state_id' => 1,
+            'created_by_id' => Auth::user()->id,
+            'capacity' => $request->capacity,
+            'picture' => $request->picture
+        ]);
 
-        $destination->name = $request->name;
-        $destination->description = $request->description;
-        $destination->cost = $request->cost;
-        $destination->dest_type_id = $request->dest_type_id;
-        $destination->dest_transp_type_id = $request->dest_transp_type_id;
-        $destination->dest_status_id = $request->dest_status_id; 
-        $destination->state_id = $request->state_id;
-        $destination->canc_reason_id = $request->canc_reason_id;
-        $destination->timestamps = $request->created_at;
+        if (is_null($destination)) {
+            return response('Error saving destination!', 500);
+        }
 
-        $destination->save();
+        foreach ($request->attractions as $index => $attraction) {
+            Attractions::create([
+                'name' => $attraction['name'],
+                'description' => $attraction['description'],
+                'destination_id' => $destination->id,
+                'picture' => $attraction['picture']
+            ]);
+        }
 
-        return redirect('/dashboard');
+        return redirect('/destination/' . $destination->id);
     }
 
-
-    public function editDestination($id)
+    public function getEditForm($id)
     {
-        $destinationForUpdate = Destination::find($id);
+        $userRoleID = config('enums.roles.USER');
+        $authUserRoleID = User::find(Auth::user()->id)->role_id;
 
-        return view('edit-destination', compact('destinationForUpdate'));
+        if ($authUserRoleID == $userRoleID) {
+            return redirect('/');
+        }
+
+        $destination = Destination::find($id);
+
+        if (is_null($destination)) {
+            return response('No such destination in database :(', 404);
+        }
+
+        if ($destination->created_by_id != Auth::user()->id) {
+            return response('You are not allowed to delete this destination :(', 403);
+        }
+
+        return view('form.edit_destination')
+            ->with('destination', $destination);
     }
 
-    public function updateDestination(Request $request)
+    public function edit(Request $request, $id)
     {
-        $destinationForUpdate = Destination::find($request->input('id'));
+        $destination = Destination::find($id);
 
-        $destinationForUpdate->name = $request->name;
-        $destinationForUpdate->description = $request->description;
-        $destinationForUpdate->cost = $request->cost;
-        $destinationForUpdate->dest_type_id = $request->dest_type_id;
-        $destinationForUpdate->dest_transp_type_id = $request->dest_transp_type_id;
-        $destinationForUpdate->dest_status_id = $request->dest_status_id;
-        $destinationForUpdate->state_id = $request->state_id;
+        if (is_null($destination)) {
+            return response('No such destination in database :(', 404);
+        }
 
-        $destinationForUpdate->save();
+        if ($destination->created_by_id != Auth::user()->id) {
+            return response('You are not allowed to delete this destination :(', 403);
+        }
 
-        return redirect('/updatedestinations');
+        $destination->update($request->all());
+
+        return redirect('/profile');
     }
 
-    public function deleteDestination(Request $request){
-        $destinationForDelete = Destination::find($request->input('id'));
+    public function delete($id)
+    {
+        $destination = Destination::find($id);
 
-        $destinationForDelete->delete();
+        if (is_null($destination)) {
+            return response('No such destination in database :(', 404);
+        }
 
-        //Update reservations
+        if ($destination->created_by_id != Auth::user()->id) {
+            return response('You are not allowed to delete this destination :(', 403);
+        }
 
-        return redirect('/updatedestinations');
+        Attractions::where('destination_id', $destination->id)->delete();
+        DestinationReservations::where('destination_id', $destination->id)->delete();
+
+        $destination->delete();
+
+        return redirect()->back();
     }
 }

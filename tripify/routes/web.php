@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\DestinationReservationsController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -47,48 +50,30 @@ Route::post('/register/agency', [UserController::class, 'registerAgency']);
 Route::get('/logout', [UserController::class, 'logout']);
 
 
-
 // ==== Profile ====
 Route::get('/profile', [ProfileController::class, 'get']);
 
 
 
 
+// === Destinations ===
+
+Route::get('/destination/create', [DestinationController::class, 'getForm']);
+Route::post('/destination/create', [DestinationController::class, 'create']);
+
+Route::get('/destination/{id}/edit', [DestinationController::class, 'getEditForm']);
+Route::post('/destination/{id}/edit', [DestinationController::class, 'edit']);
+
+Route::get('/destination/{id}', [DestinationController::class, 'get']);
+Route::delete('/destination/{id}', [DestinationController::class, 'delete']);
+
+// === Reservations
+
+Route::post('/reservation/create/{id}', [DestinationReservationsController::class, 'create']);
+Route::post('/reservation/approve/{id}', [DestinationReservationsController::class, 'approve']);
+Route::post('/reservation/delete/{id}', [DestinationReservationsController::class, 'delete']);
 
 
-//temp routes (obrišite kad budete pisali prave rute)
-Route::get('/edit-destination', function(){
-    return view('edit-destination');
-});
+// === Agency ===
+Route::get('/agency/{id}', [AgencyController::class, 'get']);
 
-Route::get('/business-registration', function() {
-   return view('register-business'); 
-});
-
-Route::get('/agency-reservations', function(){
-    return view('agency-reservation-list');
-});
-
-Route::get('/agency-details', function(){
-    return view('agency-details');
-});
-
-Route::get('/agency-trip-list', function() {
-    return view('agency-trip-list');
-});
-
-Route::get('/user-profile', function() {
-    return view('user-profile');
-});
-
-Route::get('/trip-details', function() {
-    return view('trip-details');
-});
-
-Route::get('/create-trip', function(){
-    return view('create-trip-form');
-});
-
-Route::get('/agency-profile', function() {
-    return view('agency-profile');
-});

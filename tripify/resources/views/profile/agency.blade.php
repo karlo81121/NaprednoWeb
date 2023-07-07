@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agency Profile</title>
+    <title>Tripify - Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/agency-reservation-list.css" />
@@ -27,15 +27,22 @@
         @foreach ($destinations as $destination)
             <div class="container destionation-container mb-5">
                 <div class="card destination-card w-100 mb-4">
-                    <img src="{{ $destination->picture }}" width="250" height="250" />
+                    <a href="{{ url('/destination/' . $destination->id) }}"><img src="{{ $destination->picture }}"
+                            width="250" height="250" /></a>
                     <div class="card-body">
                         <h5 class="card-title">{{ $destination->name }}</h5>
                         <p class="card-price">{{ $destination->cost }}</p>
                         <p class="card-text">{{ $destination->description }}</p>
                     </div>
                     <div class="buttons">
-                        <button type="button" class="btn btn-primary button-edit mb-2">EDIT</button>
-                        <button type="button" class="btn btn-danger button-delete mt-2">DELETE</button>
+                        <a href="{{ url('/destination/' . $destination->id . '/edit') }}" style="display:block"><button
+                                type="button" class="btn btn-primary button-edit mb-2">EDIT</button></a>
+
+                        <form id="deleteForm" action="{{ url('/destination/' . $destination->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger button-delete mt-2">DELETE</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -47,10 +54,11 @@
     @endif
 
     <div class="container mt-5 mb-5">
-        <button type="button" class="btn btn-success add-new-trip-button w-100">ADD NEW TRIP</button>
+        <button type="button" class="btn btn-success add-new-trip-button w-100"><a
+                href="{{ url('/destination/create') }}" style="color:white">ADD NEW TRIP</a></button>
     </div>
 
-    @if (!is_null($destinations) && count($destinations) > 0)
+    @if (!is_null($reservations) && count($reservations) > 0)
         <div class="container">
             <h3 class="mt-5 mb-5">RESERVATIONS PENDING APPROVAL</h3>
 
@@ -65,10 +73,18 @@
                             <span class="card-name">{{ $reservation->name }}</span>
                         </div>
                     </div>
-                    <div class="buttons">
-                        <button type="button" class="btn btn-success mx-1">APPROVE</button>
-                        <button type="button" class="btn btn-danger mx-1">CANCEL</button>
-                    </div>
+
+                    <form id="approve" action="{{ url('/reservation/approve/' . $reservation->id) }}" method="POST">
+                        @csrf
+
+                        <button type="submit" class="btn btn-success mt-2">APPROVE</button>
+                    </form>
+
+                    <form id="cancel" action="{{ url('/reservation/delete/' . $reservation->id) }}" method="POST">
+                        @csrf
+
+                        <button type="submit" class="btn btn-danger mt-2">CANCEL</button>
+                    </form>
                 </div>
             @endforeach
         </div>
